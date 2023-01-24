@@ -6,6 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface ScarletIcon {
+        "color"?: string;
+        "description"?: string;
+        "filename"?: string;
+    }
     interface ScarletInput {
         "disabled"?: boolean;
         "errormessage"?: string;
@@ -33,12 +38,34 @@ export namespace Components {
         "required"?: boolean;
         "value"?: string;
     }
+    interface ScarletInputPassword {
+        "checked": boolean;
+        "disabled"?: boolean;
+        "errormessage"?: string;
+        "helpermessage"?: string;
+        "idprop"?: string;
+        "label"?: string;
+        "name": string;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "value"?: string;
+    }
 }
 export interface ScarletInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLScarletInputElement;
 }
+export interface ScarletInputPasswordCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLScarletInputPasswordElement;
+}
 declare global {
+    interface HTMLScarletIconElement extends Components.ScarletIcon, HTMLStencilElement {
+    }
+    var HTMLScarletIconElement: {
+        prototype: HTMLScarletIconElement;
+        new (): HTMLScarletIconElement;
+    };
     interface HTMLScarletInputElement extends Components.ScarletInput, HTMLStencilElement {
     }
     var HTMLScarletInputElement: {
@@ -51,12 +78,25 @@ declare global {
         prototype: HTMLScarletInputCpfcnpjElement;
         new (): HTMLScarletInputCpfcnpjElement;
     };
+    interface HTMLScarletInputPasswordElement extends Components.ScarletInputPassword, HTMLStencilElement {
+    }
+    var HTMLScarletInputPasswordElement: {
+        prototype: HTMLScarletInputPasswordElement;
+        new (): HTMLScarletInputPasswordElement;
+    };
     interface HTMLElementTagNameMap {
+        "scarlet-icon": HTMLScarletIconElement;
         "scarlet-input": HTMLScarletInputElement;
         "scarlet-input-cpfcnpj": HTMLScarletInputCpfcnpjElement;
+        "scarlet-input-password": HTMLScarletInputPasswordElement;
     }
 }
 declare namespace LocalJSX {
+    interface ScarletIcon {
+        "color"?: string;
+        "description"?: string;
+        "filename"?: string;
+    }
     interface ScarletInput {
         "disabled"?: boolean;
         "errormessage"?: string;
@@ -85,17 +125,34 @@ declare namespace LocalJSX {
         "required"?: boolean;
         "value"?: string;
     }
+    interface ScarletInputPassword {
+        "checked"?: boolean;
+        "disabled"?: boolean;
+        "errormessage"?: string;
+        "helpermessage"?: string;
+        "idprop"?: string;
+        "label"?: string;
+        "name"?: string;
+        "onChechekChangeTo"?: (event: ScarletInputPasswordCustomEvent<boolean>) => void;
+        "readonly"?: boolean;
+        "required"?: boolean;
+        "value"?: string;
+    }
     interface IntrinsicElements {
+        "scarlet-icon": ScarletIcon;
         "scarlet-input": ScarletInput;
         "scarlet-input-cpfcnpj": ScarletInputCpfcnpj;
+        "scarlet-input-password": ScarletInputPassword;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "scarlet-icon": LocalJSX.ScarletIcon & JSXBase.HTMLAttributes<HTMLScarletIconElement>;
             "scarlet-input": LocalJSX.ScarletInput & JSXBase.HTMLAttributes<HTMLScarletInputElement>;
             "scarlet-input-cpfcnpj": LocalJSX.ScarletInputCpfcnpj & JSXBase.HTMLAttributes<HTMLScarletInputCpfcnpjElement>;
+            "scarlet-input-password": LocalJSX.ScarletInputPassword & JSXBase.HTMLAttributes<HTMLScarletInputPasswordElement>;
         }
     }
 }

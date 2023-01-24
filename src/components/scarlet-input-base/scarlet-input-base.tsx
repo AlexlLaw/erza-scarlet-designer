@@ -74,57 +74,56 @@ export class ScarletInputBase {
   }
 
  render() {
-  return (
-    <div
-      class={{
-      ['sicredi-input']:true,
-      ['-disabled']:this.disabled,
-      ['-readonly']:this.readonly,
-      ['-invalid']:!this.disabled && !!this.errormessage}}
-    >
-      <input
-        type={this.type}
-        class="placeholder"
-        placeholder=""
-        id={this.idprop}
-        name={this.name}
-        value={this.maskInputValue.maskedValue}
-        required={this.required}
-        disabled={this.disabled}
-        readonly={this.readonly}
-        maxlength={(this.maskInputValue.maxlength && this.maxlength)}
-        aria-invalid={!!this.errormessage && !this.disabled}
-        aria-readonly={this.readonly ? 'true' : 'false'}
-        aria-required={this.required ? 'true' : 'false'}
-        aria-disabled={this.disabled ? 'true' : 'false'}
-        onInput={(ev:UIEvent) => this.handleChange(ev)}
-        onFocus={() => this.setLabelClassOnFocus()}
-        onBlur={() => this.unsetLabelClassOnFocus()}
-        ref={el => this.input = el}
-      />
-
-      {this.iconFilename && this.iconDescription && (
-        <span class={'icon'} onClick={!this.readonly ? () => this.input.focus() : null}>
-          {/* <diana-icon filename={this.iconFilename} description={this.iconDescription}></diana-icon> */}
-        </span>
-      )}
-
-      <label class={this.labelClass} ref={el => (this.labelText = el)}>
-        {this.label}
-      </label>
-
-      <span
+    return (
+      <div
         class={{
-          ['helper-message']: !this.errormessage,
-          ['error-message color-danger']: !!this.errormessage,
-        }}
+        ['scarlet-input']:true,
+        ['-disabled']:this.disabled,
+        ['-readonly']:this.readonly,
+        ['-invalid']:!this.disabled && !!this.errormessage}}
       >
-        {this.errormessage}
-        {!this.errormessage && this.helpermessage}
-        {!this.helpermessage && !this.errormessage && '\u00A0'}
-      </span>
-    </div>
-  );
-}
+        <input
+          type={this.type}
+          class="placeholder"
+          placeholder=""
+          id={this.idprop}
+          name={this.name}
+          value={this.maskInputValue.maskedValue}
+          required={this.required}
+          disabled={this.disabled}
+          readonly={this.readonly}
+          maxlength={(this.maskInputValue.maxlength && this.maxlength)}
+          aria-invalid={!!this.errormessage && !this.disabled}
+          aria-readonly={this.readonly ? 'true' : 'false'}
+          aria-required={this.required ? 'true' : 'false'}
+          aria-disabled={this.disabled ? 'true' : 'false'}
+          onInput={(ev:UIEvent) => this.handleChange(ev)}
+          onFocus={() => this.setLabelClassOnFocus()}
+          onBlur={() => this.unsetLabelClassOnFocus()}
+          ref={el => this.input = el}
+        />
 
+        {this.iconFilename && this.iconDescription && (
+          <span class={'icon'} onClick={!this.readonly ? () => this.input.focus() : null}>
+          <scarlet-icon filename={this.iconFilename} description={this.iconDescription}></scarlet-icon>
+          </span>
+        )}
+
+        <label class={this.labelClass} ref={el => (this.labelText = el)}>
+          {this.label}
+        </label>
+
+        <span
+          class={{
+            ['helper-message']: !this.errormessage,
+            ['error-message color-danger']: !!this.errormessage,
+          }}
+        >
+          {this.errormessage}
+          {!this.errormessage && this.helpermessage}
+          {!this.helpermessage && !this.errormessage && '\u00A0'}
+        </span>
+      </div>
+    );
+  }
 }

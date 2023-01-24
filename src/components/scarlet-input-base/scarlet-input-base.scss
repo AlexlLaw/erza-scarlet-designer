@@ -1,8 +1,7 @@
 
-.sicredi-input {
+.scarlet-input {
   position: relative;
   padding: $spacing-small $spacing-medium 0 0;
-
   max-width: 100%;
   z-index: 1;
 
@@ -43,6 +42,7 @@
     top: 30%;
     right: 0;
     height: 24px;
+    width: 22px;
     color: $color-primary;
     cursor: text;
   }
